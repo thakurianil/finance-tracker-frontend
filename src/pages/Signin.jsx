@@ -1,6 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { redirect } from "react-router";
 
+import { getUser } from "../helpers/userAxios";
+import { toast } from "react-toastify";
+const initialState = {
+  email: "",
+  password: "",
+};
 function Signin() {
+  const [formData, setFormData] = useState(initialState);
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    console.log(formData);
+
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = await getUser(formData);
+    console.log(data);
+    toast[data.status](data.message);
+
+    status === "success" && setFormData(initialState);
+  };
+
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-dark">
       <div className="card w-75">
@@ -8,21 +34,33 @@ function Signin() {
           <div className="col-md-6 bg-dark text-light p-4">
             <h2 className="h4 mb-4">Sign in now!</h2>
             <hr></hr>
-            <form>
+            <form onSubmit={handleOnSubmit}>
               <div className="mb-3">
-                <label className="form-label" htmlFor="email">Email</label>
+                <label className="form-label" htmlFor="email">
+                  Email
+                </label>
                 <input
                   className="form-control"
                   id="email"
                   type="email"
+                  placeholder="Please Enter Email"
+                  name="email"
+                  value={FormData.email}
+                  onChange={handleOnChange}
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label" htmlFor="password">Password</label>
+                <label className="form-label" htmlFor="password">
+                  Password
+                </label>
                 <input
                   className="form-control"
                   id="password"
                   type="password"
+                  placeholder="Please Enter Password"
+                  name="password"
+                  value={FormData.password}
+                  onChange={handleOnChange}
                 />
               </div>
               <button className="btn btn-primary w-100" type="submit">
@@ -45,9 +83,7 @@ function Signin() {
               coped with the unforeseeable and the unpredictable." - George S.
               Clason
             </p>
-            <button className="btn btn-outline-light mt-4" onClick={() => alert("Redirect to Sign Up!")}>
-              Sign Up
-            </button>
+            <button className="btn btn-outline-light mt-4">Sign Up</button>
           </div>
         </div>
       </div>
