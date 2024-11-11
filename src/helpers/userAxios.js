@@ -2,7 +2,7 @@ import { root } from "postcss"
 import { apiProcessor } from "./axiosHelper"
 
 
-const rootAPI = "http://localhost:9000/api/v1"
+const rootAPI = "http://localhost:9001/api/v1"
 
 export const addUser = async(data)=>{
     const axiosObj ={
