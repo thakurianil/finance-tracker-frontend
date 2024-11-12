@@ -31,9 +31,12 @@ function Signup() {
     console.log(data);
     toast[data.status](data.message);
 
-   status === "success" && setFormData(initialState)
+    if (data.status == "success") {
+      navigate("/transaction"); 
+    }
 
 
+   status === "success" && setFormData(initialState);
   }
 
   return (

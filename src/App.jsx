@@ -7,6 +7,7 @@ import Signin from "./pages/Signin.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from "react-router";
+import Transaction from "./pages/Transaction.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -17,6 +18,8 @@ function App() {
       <Routes>
           <Route path="/login" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/transaction" element={<Transaction />} />
+          
       </Routes>
     </>
   );

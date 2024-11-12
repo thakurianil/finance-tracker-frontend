@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { redirect } from "react-router";
+import { Navigate, redirect, useNavigate } from "react-router";
 
-import { getUser } from "../helpers/userAxios";
+import { getUser, setJWTtoken } from "../helpers/userAxios";
 import { toast } from "react-toastify";
+
+
+
 const initialState = {
   email: "",
   password: "",
 };
 function Signin() {
   const [formData, setFormData] = useState(initialState);
-
+  const navigate = useNavigate();
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     console.log(formData);
@@ -21,10 +24,20 @@ function Signin() {
     e.preventDefault();
 
     const data = await getUser(formData);
-    console.log(data);
-    toast[data.status](data.message);
 
-    status === "success" && setFormData(initialState);
+    console.log(data.JWToken);
+    toast[data.status](data.message);
+  
+    localStorage.setItem("accessJWT", data.JWToken);
+
+    if(data?.status === "success"){
+      
+      navigate("/transaction");
+    }
+
+    status === "success" && setFormData(initialState) ;
+    
+
   };
 
   return (
