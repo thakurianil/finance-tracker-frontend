@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { getTransactions } from '../helpers/userAxios';
-import AddTransactionModal from './addTransaction'; // Import your modal component
+import React, { useEffect, useState } from "react";
+import { getTransactions } from "../helpers/userAxios";
+import AddTransactionModal from "./addTransaction"; // Import your modal component
 
 // TransactionRow component for rendering each row in the table
 const TransactionRow = ({ transaction, index }) => {
   return (
     <tr>
-      <td><input type="checkbox" /></td>
+      <td>
+        <input type="checkbox" />
+      </td>
       <td>{index + 1}</td>
-      <td>{new Date(transaction.date).toLocaleDateString('en-CA')}</td> 
+      <td>{new Date(transaction.date).toLocaleDateString("en-CA")}</td>
       <td>{transaction.description}</td>
-      <td className={transaction.type === 'debit' ? 'text-red-500' : ''}>{transaction.type === 'debit' ? `-${transaction.amount}` : ''}</td>
-      <td className={transaction.type === 'credit' ? 'text-green-500' : ''}>{transaction.type === 'credit' ? `$${transaction.amount}` : ''}</td>
+      <td className={transaction.type === "debit" ? "text-red-500" : ""}>
+        {transaction.type === "debit" ? `-${transaction.amount}` : ""}
+      </td>
+      <td className={transaction.type === "credit" ? "text-green-500" : ""}>
+        {transaction.type === "credit" ? `$${transaction.amount}` : ""}
+      </td>
     </tr>
   );
 };
@@ -24,12 +30,13 @@ const Transaction = () => {
   const getTransaction = async () => {
     const response = await getTransactions();
     console.log(200, response);
-    
+
     setTransactions(response.transactions ?? []);
   };
 
   const handleAddTransaction = (newTransaction) => {
     setTransactions([...transactions, newTransaction]);
+    getTransaction();
   };
 
   useEffect(() => {
@@ -39,8 +46,10 @@ const Transaction = () => {
 
   // Calculate the total balance
   const totalBalance = transactions.reduce((total, transaction) => {
-    if (transaction.type === 'credit') return total + parseFloat(transaction.amount);
-    if (transaction.type === 'debit') return total - parseFloat(transaction.amount);
+    if (transaction.type === "credit")
+      return total + parseFloat(transaction.amount);
+    if (transaction.type === "debit")
+      return total - parseFloat(transaction.amount);
     return total;
   }, 0);
 
@@ -48,7 +57,9 @@ const Transaction = () => {
     <div className="container mx-auto">
       <div className="table-container bg-gray-800 p-6 rounded-lg my-6 mx-auto w-6/5">
         <div className="table-header flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold text-white">{transactions.length} transaction(s) found!</h2>
+          <h2 className="text-lg font-semibold text-white">
+            {transactions.length} transaction(s) found!
+          </h2>
           <div className="flex">
             <input
               type="text"
@@ -66,7 +77,9 @@ const Transaction = () => {
         <table className="w-full table-auto text-white">
           <thead>
             <tr>
-              <th><input type="checkbox" /></th>
+              <th>
+                <input type="checkbox" />
+              </th>
               <th>#</th>
               <th>Date</th>
               <th>Title</th>
@@ -76,12 +89,18 @@ const Transaction = () => {
           </thead>
           <tbody>
             {transactions.map((transaction, index) => (
-              <TransactionRow key={index} transaction={transaction} index={index} />
+              <TransactionRow
+                key={index}
+                transaction={transaction}
+                index={index}
+              />
             ))}
           </tbody>
           <tfoot>
             <tr>
-              <td colSpan="5" className="text-right text-white">Total Balance</td>
+              <td colSpan="5" className="text-right text-white">
+                Total Balance
+              </td>
               <td className="text-white">${totalBalance.toFixed(2)}</td>
             </tr>
           </tfoot>
@@ -91,8 +110,8 @@ const Transaction = () => {
       {/* Add Transaction Modal */}
       <AddTransactionModal
         isVisible={isModalVisible}
-        onClose={() => setIsModalVisible(false)} // Hide modal
-        onAddTransaction={handleAddTransaction} // Handle form submission
+        onClose={() => setIsModalVisible(false)}
+        onAddTransaction={handleAddTransaction}
       />
     </div>
   );

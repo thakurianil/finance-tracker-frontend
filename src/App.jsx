@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from "react-router";
 import Transaction from "./pages/Transaction.jsx";
+import DefaultLayout from "./layout/defaultLayout.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -17,6 +18,8 @@ function App() {
       <ToastContainer />
       <Routes>
           <Route path="/login" element={<Signin />} />
+          <Route path="/default" element={<DefaultLayout />} />
+          
           <Route path="/signup" element={<Signup />} />
           <Route path="/transaction" element={<Transaction />} />
           
