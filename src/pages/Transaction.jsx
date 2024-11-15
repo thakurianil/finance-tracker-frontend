@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getTransactions } from "../helpers/userAxios";
 import AddTransactionModal from "./addTransaction"; // Import your modal component
+import Header from "../component/Header";
+import Footer from "../component/Footer";
 
 // TransactionRow component for rendering each row in the table
 const TransactionRow = ({ transaction, index }) => {
@@ -54,6 +56,8 @@ const Transaction = () => {
   }, 0);
 
   return (
+    <>
+    <Header></Header>
     <div className="container mx-auto">
       <div className="table-container bg-gray-800 p-6 rounded-lg my-6 mx-auto w-6/5">
         <div className="table-header flex justify-between items-center mb-4">
@@ -114,6 +118,9 @@ const Transaction = () => {
         onAddTransaction={handleAddTransaction}
       />
     </div>
+    <Footer></Footer>
+    </>
+
   );
 };
 
