@@ -29,18 +29,12 @@ function Signup() {
 
     const data = await addUser(formData);
     console.log(data);
-    toast[data.status](data.message);
-
-    if (data.status == "success") {
-      navigate("/transaction"); 
-    }
-
 
    status === "success" && setFormData(initialState);
   }
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-dark">
+    <div className="d-flex justify-content-center align-items-center vh-90 bg-light m-10">
       <div className="card w-75">
         <div className="row g-0">
           <div className="col-md-6 d-flex flex-column justify-content-center align-items-center text-light bg-secondary p-4">

@@ -17,11 +17,13 @@ function App() {
     <>
       <ToastContainer />
       <Routes>
-          <Route path="/login" element={<Signin />} />
-          <Route path="/default" element={<DefaultLayout />} />
-          
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/transaction" element={<Transaction />} />
+
+        <Route path="*" element={<DefaultLayout />}>
+            <Route index element={<Signin />} />
+            <Route path="login" element={<Signin />} />          
+            <Route path="signup" element={<Signup />} />
+            <Route path="transaction" element={<Transaction />} />
+        </Route>
           
       </Routes>
     </>

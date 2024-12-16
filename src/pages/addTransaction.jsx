@@ -24,8 +24,8 @@ const AddTransactionModal = ({ isVisible, onClose, onAddTransaction }) => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-6 rounded-lg w-96">
+    <div className="sticky inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
+      <div className="bg-white p-6 rounded-lg w-100">
         <h3 className="text-xl font-semibold">Add New Transaction</h3>
         <form onSubmit={handleFormSubmit}>
           <div className="my-4">

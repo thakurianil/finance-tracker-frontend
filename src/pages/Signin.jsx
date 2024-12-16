@@ -4,13 +4,12 @@ import { Navigate, redirect, useNavigate } from "react-router";
 import { getUser, setJWTtoken } from "../helpers/userAxios";
 import { toast } from "react-toastify";
 
-
-
-const initialState = {
-  email: "",
-  password: "",
-};
 function Signin() {
+
+  const initialState = {
+    email: "",
+    password: "",
+  };
   const [formData, setFormData] = useState(initialState);
   const navigate = useNavigate();
   const handleOnChange = (e) => {
@@ -20,6 +19,9 @@ function Signin() {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleClick = () => {
+    navigate("/signup");
+  };
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,21 +29,18 @@ function Signin() {
 
     console.log(data.JWToken);
     toast[data.status](data.message);
-  
+
     localStorage.setItem("accessJWT", data.JWToken);
 
-    if(data?.status === "success"){
-      
+    if (data?.status === "success") {
       navigate("/transaction");
     }
 
-    status === "success" && setFormData(initialState) ;
-    
-
+    status === "success" && setFormData(initialState);
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-dark">
+    <div className="d-flex justify-content-center align-items-center vh-90 bg-light ">
       <div className="card w-75">
         <div className="row g-0">
           <div className="col-md-6 bg-dark text-light p-4">
@@ -96,7 +95,12 @@ function Signin() {
               coped with the unforeseeable and the unpredictable." - George S.
               Clason
             </p>
-            <button className="btn btn-outline-light mt-4">Sign Up</button>
+            <button
+              className="btn btn-outline-light mt-4"
+              onClick={handleClick}
+            >
+              Sign Up
+            </button>
           </div>
         </div>
       </div>

@@ -57,7 +57,7 @@ const Transaction = () => {
 
   return (
     <>
-    <Header></Header>
+    
     <div className="container mx-auto">
       <div className="table-container bg-gray-800 p-6 rounded-lg my-6 mx-auto w-6/5">
         <div className="table-header flex justify-between items-center mb-4">
@@ -118,7 +118,7 @@ const Transaction = () => {
         onAddTransaction={handleAddTransaction}
       />
     </div>
-    <Footer></Footer>
+    
     </>
 
   );
