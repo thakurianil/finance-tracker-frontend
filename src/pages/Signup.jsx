@@ -13,25 +13,6 @@ function Signup() {
 
 
 
-  const [formData, setFormData] = useState(initialState);
-
-  const handleOnChange = (e)=>{
-    const {name, value} = e.target;
-    setFormData({...formData, [name]:value})
-    console.log(name, value);
-  }
-
-  const handleOnSubmit = async(e)=>{
-    e.preventDefault();
-
-    console.log(formData);
-
-
-    const data = await addUser(formData);
-    console.log(data);
-
-   status === "success" && setFormData(initialState);
-  }
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-90 bg-light m-10">
