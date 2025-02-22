@@ -6,22 +6,6 @@ import { toast } from "react-toastify";
 
 function Signin() {
 
-  const initialState = {
-    email: "",
-    password: "",
-  };
-  const [formData, setFormData] = useState(initialState);
-  const navigate = useNavigate();
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
-    console.log(formData);
-
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleClick = () => {
-    navigate("/signup");
-  };
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
