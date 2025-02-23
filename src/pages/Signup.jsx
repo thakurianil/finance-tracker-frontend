@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { addUser } from "../helpers/userAxios";
 import { toast } from "react-toastify";
 
-
+const initialState = {
+  username: "",
+  email:"",
+  password: "",
+  confirmPassword:""
+}
 
 function Signup() {
 
