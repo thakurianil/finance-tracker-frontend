@@ -5,7 +5,24 @@ import Header from "../component/Header";
 import Footer from "../component/Footer";
 
 // TransactionRow component for rendering each row in the table
-
+const TransactionRow = ({ transaction, index }) => {
+  return (
+    <tr>
+      <td>
+        <input type="checkbox" />
+      </td>
+      <td>{index + 1}</td>
+      <td>{new Date(transaction.date).toLocaleDateString("en-CA")}</td>
+      <td>{transaction.description}</td>
+      <td className={transaction.type === "debit" ? "text-red-500" : ""}>
+        {transaction.type === "debit" ? `-${transaction.amount}` : ""}
+      </td>
+      <td className={transaction.type === "credit" ? "text-green-500" : ""}>
+        {transaction.type === "credit" ? `$${transaction.amount}` : ""}
+      </td>
+    </tr>
+  );
+};
 
 // Main TransactionPage component
 const Transaction = () => {
