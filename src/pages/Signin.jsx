@@ -22,7 +22,22 @@ function Signin() {
   const handleClick = () => {
     navigate("/signup");
   };
- 
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = await getUser(formData);
+
+    console.log(data.JWToken);
+    toast[data.status](data.message);
+
+    localStorage.setItem("accessJWT", data.JWToken);
+
+    if (data?.status === "success") {
+      navigate("/transaction");
+    }
+
+    status === "success" && setFormData(initialState);
+  };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-90 bg-light ">
