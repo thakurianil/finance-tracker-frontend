@@ -46,18 +46,6 @@ export const getTransactions = async () => {
     return await apiProcessor(obj);
   };
   
-export const addTransactions = async (formData) => {
-    let token = localStorage.getItem("accessJWT"); 
-    const obj = {
-        method: "post",
-        url: rootAPI + "/transactions",
-        data: formData,
-        headers:{
-            Authorization: `Bearer ${token}`,
-        },
-    };
-    return await apiProcessor(obj);
-};
 
 
 
