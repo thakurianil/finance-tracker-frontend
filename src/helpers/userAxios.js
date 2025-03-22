@@ -21,14 +21,6 @@ export const addUser = async (data) => {
   return await apiProcessor(axiosObj);
 };
 
-export const getUser = async (data) => {
-  const axiosObj = {
-    method: "POST",
-    url: rootAPI + "/users/login",
-    data,
-  };
-  return await apiProcessor(axiosObj);
-};
 
 export const getTransactions = async () => {
     let token = localStorage.getItem("accessJWT");  // Ensure the token is retrieved from localStorage
