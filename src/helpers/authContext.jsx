@@ -15,15 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userid, setUserId] = useState(null);
 
-  const autoLogin = async () => {
-    // call verify endpoint
-    const response = await verifyToken();
-    if (response.status == "success") {
-      setUser(response.data.username);
-      setUserId(response.data._id);
-    }
-  };
-
+  
   const login = async (loginInfo) => {
     try {
       const response = await userLogin(loginInfo);
